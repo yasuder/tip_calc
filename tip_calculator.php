@@ -6,7 +6,7 @@
 <!DOCTYPE html<html>
 <head>
 	<title>Tip Calculator</title>
-	<link rel="stylesheet" type="text/css" href="tipcal.css">
+	<link rel="stylesheet" type="text/css" href="tipstyle.php">
 </head>
 <body>
 	<h1>Tip Calculator</h1>
@@ -34,7 +34,9 @@
 			<?php 
 				## Calculating and setting tip value and total value depending on the subtotal and tip percentage selected by the user
 				## Will print the respective values if all required forms are filled in and any submitted forms contain acceptable values
-				if (!empty($_POST['cost']) && $_POST['cost'] > 0.00 && ($_POST['custom'] > 0 || empty($_POST['custom']))) { 
+				if (empty($_POST['cost']) || $_POST['cost'] <= 0) {
+
+				} else { 
 					if($_POST['tipval'] > 0) {
 						$tip = number_format((float)$_POST['cost'] * $_POST['tipval'], 2, '.', '');
 						$total = number_format((float)$_POST['cost'] + ($_POST['cost'] * $_POST['tipval']), 2, '.', '');
