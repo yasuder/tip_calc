@@ -1,12 +1,26 @@
 body {
 	align-content: center;
+	background-color: 6495ED; 
 	text-align: center;
-}
-
-#result {
-
 }
 
 #custom {
 	max-width: 30px;
+}
+
+form {
+	background-color: 6495ED;
+	margin: auto;
+	width: 800px;
+}
+
+h1 { 
+	color: white;
+	outline: 696969;
+}
+
+#result {
+	background-color: D3D3D3;
+	margin: auto;
+	width: 800px;
 }
