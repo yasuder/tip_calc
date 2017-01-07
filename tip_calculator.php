@@ -6,13 +6,13 @@
 <!DOCTYPE html<html>
 <head>
 	<title>Tip Calculator</title>
-	<link rel="stylesheet" type="text/css" href="tipstyle.php">
+	<link rel="stylesheet" type="text/css" href="tipcal.css">
 </head>
 <body>
 	<h1>Tip Calculator</h1>
 			<form name="input" action="" method="post">
 				<!-- Asks for user to input subtotal cost -->
-	  			Bill subtotal $<input type="text" name="cost" value=<?php if(isset($_POST['cost'])) { echo $_POST['cost']; }?>><br>
+	  			Bill subtotal $<input type="text" name="cost" id="cost" style=<?php echo $color ?> value=<?php if(isset($_POST['cost'])) { echo $_POST['cost']; }?>><br>
 
 	  			<!-- Asks for user to select a tip with radio buttons or input a custom tip percentage into the text box -->
 				<p>Tip Percentage</p>
@@ -34,8 +34,8 @@
 			<?php 
 				## Calculating and setting tip value and total value depending on the subtotal and tip percentage selected by the user
 				## Will print the respective values if all required forms are filled in and any submitted forms contain acceptable values
-				if (empty($_POST['cost']) || $_POST['cost'] <= 0) {
-
+				if (empty($_POST['cost'])) {
+					$color = 'background-color: red';
 				} else { 
 					if($_POST['tipval'] > 0) {
 						$tip = number_format((float)$_POST['cost'] * $_POST['tipval'], 2, '.', '');
