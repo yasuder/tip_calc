@@ -6,3 +6,7 @@ body {
 #result {
 
 }
+
+#custom {
+	max-width: 30px;
+}
