@@ -23,7 +23,7 @@
 				<?php
 				}
 				?>
-				<input type="radio" name="tipval" value=0> Custom: <input type="text" id="custom" name="custom" <?php if (isset($_POST['tipval'])) echo ' checked="checked"'?> value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; }?> >% <br>
+				<input type="radio" name="tipval" <?php if (isset($_POST['custom']) && $_POST['tipval'] == 0) echo ' checked="checked"'?> value=0> Custom: <input type="text" id="custom" name="custom" value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; }?> >% <br>
 
 				<!-- Optional feature which allows users to split the total tip and cost by any specified number of people -->
 				Split: <input type="text" name="split" id="split" value=<?php if(isset($_POST['split'])) { echo $_POST['split']; }?>> person(s)<br>
@@ -38,12 +38,12 @@
 					if($_POST['tipval'] > 0) {
 						$tip = number_format((float)$_POST['cost'] * $_POST['tipval'], 2, '.', '');
 						$total = number_format((float)$_POST['cost'] + ($_POST['cost'] * $_POST['tipval']), 2, '.', '');
-					} else if($_POST['custom'] > 0) {
+					} else if(isset($_POST['custom']) && $_POST['custom'] > 0) {
 						$tip = number_format((float)$_POST['cost'] * $_POST['custom']/100, 2, '.', '');
 						$total = number_format((float)$_POST['cost'] + ($_POST['cost'] * $_POST['custom']/100), 2, '.', '');
 					}
 
-					if($_POST['tipval'] > 0) { 
+					if($_POST['tipval'] > 0 || ($_POST['tipval'] == 0 && $_POST['custom'] > 0)) { 
 					?>
 						<!-- Total Tip and Total Cost to display -->
 						<div id="result" style="display: hide" >
