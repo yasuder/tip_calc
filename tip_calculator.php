@@ -15,7 +15,7 @@
 	  			Bill subtotal $<input type="text" name="cost" id="cost" value=<?php if(isset($_POST['cost'])) { echo $_POST['cost']; }?>><br>
 
 	  			<!-- Asks for user to select a tip with radio buttons or input a custom tip percentage into the text box -->
-				<p>Tip Percentage</p>
+				<p id="tipform">Tip Percentage</p>
 				<?php
 				for($i = 10; $i < 21; $i+=5) {
 				?>
@@ -74,7 +74,7 @@
 						<?php
 						}
 					}
-				} else if(isset($_POST['tipval']) && empty($_POST['cost'])) {
+				} else if(isset($_POST['tipval']) && (empty($_POST['cost']) || $_POST['cost'] < 0)){
 					?>
 					<div class="error">!! You must input a valid bill subtotal !!</div>
 				<?php

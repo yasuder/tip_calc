@@ -9,22 +9,49 @@ body {
 }
 
 .error {
+	background-color: white;
+	border-color: black;
+	border-style: double;
 	color: red;
+	font-size: 20pt;
+	font-weight: bold;
 }
 
 form {
 	background-color: 6495ED;
+	font-size: 20pt;
+	font-weight: bold;
 	margin: auto;
+	padding: 10pt;
 	width: 800px;
 }
 
-h1 { 
+h1, #tipform { 
+	background-color: grey; 
+	border-color: black;
+	border-radius: 20pt;
+	border-style: double;
 	color: white;
+	margin-bottom: 30pt;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30pt;
 	outline: 696969;
+	width: 800px;
+}
+
+input {
+	font-size: 18pt;
 }
 
 #result {
 	background-color: D3D3D3;
-	margin: auto;
-	width: 800px;
+	border-color: black;
+	border-style: double;
+	font-size: 18pt;
+	font-weight: bold;
+	margin-top: 10pt;
+	padding: 10pt;
+	width: auto;
 }
+
