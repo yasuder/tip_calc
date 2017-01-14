@@ -59,6 +59,10 @@
 								<div>Total Each: $<?php echo number_format((float)$total / $_POST['split'], 2, '.', '') ?></div>
 							</div>
 							<?php
+							} else {
+								?>
+								<div id="spliterror">!! You must input a valid value to split the bill by !!</div>
+							<?php
 							}
 						}
 					}

@@ -24,3 +24,7 @@ h1 {
 	margin: auto;
 	width: 800px;
 }
+
+#spliterror {
+	color: red;
+}
