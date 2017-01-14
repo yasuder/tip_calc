@@ -28,8 +28,8 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+![Video Walkthrough](https://github.com/yasuder/tip_calc/blob/master/tipcalcvid.gif "Video Walkthrough")
 
-<img src='http://i.imgur.com/XqcgIVa.gifv' title='Video Walkthrough' width='400px' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
