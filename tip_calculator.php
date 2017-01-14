@@ -54,28 +54,31 @@
 						?>
 						<div class="error">!! You must select a tip percentage value !!</div>
 					<?php
-					} else if($_POST['custom'] == "" || $_POST['custom'] < 0) {
+					} else if(empty($_POST['custom']) || $_POST['custom'] < 0) {
 						?>
 						<div class="error">!! You must enter a valid custom tip value !!</div>
 					<?php
 					}
 
 						## Individual tips and totals each member must pay if the split is greater than or equal to 2 persons
-						if(!empty($_POST['split']) || $_POST['split'] < 0) {
-							if($_POST['split'] > 1) {
+					if(!empty($_POST['split']) || $_POST['split'] < 0) {
+						if($_POST['split'] > 1) {
+						?>
+							<div>Tip Each: $<?php echo number_format((float)$tip / $_POST['split'], 2, '.', '') ?> </div>
+							<div>Total Each: $<?php echo number_format((float)$total / $_POST['split'], 2, '.', '') ?></div>
+						</div>
+						<?php
+						} else {
 							?>
-								<div>Tip Each: $<?php echo number_format((float)$tip / $_POST['split'], 2, '.', '') ?> </div>
-								<div>Total Each: $<?php echo number_format((float)$total / $_POST['split'], 2, '.', '') ?></div>
-							</div>
-							<?php
-							} else {
-								?>
-								<div class="error">!! You must input a valid value to split the bill by !!</div>
-							<?php
-							}
+							<div class="error">!! You must input a valid value to split the bill by !!</div>
+						<?php
 						}
 					}
-				
+				} else if(isset($_POST['tipval']) && empty($_POST['cost'])) {
+					?>
+					<div class="error">!! You must input a valid bill subtotal !!</div>
+				<?php
+				}
 			?>
 			</form>
 </body>
