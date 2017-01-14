@@ -19,11 +19,11 @@
 				<?php
 				for($i = 10; $i < 21; $i+=5) {
 				?>
-					<input type="radio" name="tipval" value=<?=$i / 100?>> <?=$i?>%
+					<input type="radio" name="tipval" value=<?=$i / 100?> <?php if (isset($_POST['tipval']) && $_POST['tipval'] == $i / 100) echo ' checked="checked"'?>> <?=$i?>%
 				<?php
 				}
 				?>
-				<input type="radio" name="tipval" value=0> Custom: <input type="text" id="custom" name="custom" value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; }?>>% <br>
+				<input type="radio" name="tipval" value=0> Custom: <input type="text" id="custom" name="custom" <?php if (isset($_POST['tipval'])) echo ' checked="checked"'?> value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; }?> >% <br>
 
 				<!-- Optional feature which allows users to split the total tip and cost by any specified number of people -->
 				Split: <input type="text" name="split" id="split" value=<?php if(isset($_POST['split'])) { echo $_POST['split']; }?>> person(s)<br>
