@@ -12,7 +12,7 @@
 	<h1>Tip Calculator</h1>
 			<form name="input" action="" method="post">
 				<!-- Asks for user to input subtotal cost -->
-	  			Bill subtotal $<input type="text" name="cost" id="cost" value=<?php if(isset($_POST['cost'])) { echo $_POST['cost']; }?>><br>
+	  			Bill subtotal $<input type="text" name="cost" id="cost" value=<?php if(isset($_POST['cost'])) { echo $_POST['cost']; } else { echo 20;} ?>><br>
 
 	  			<!-- Asks for user to select a tip with radio buttons or input a custom tip percentage into the text box -->
 				<p id="tipform">Tip Percentage</p>
@@ -23,10 +23,10 @@
 				<?php
 				}
 				?>
-				<input type="radio" name="tipval" <?php if (isset($_POST['custom']) && $_POST['tipval'] == 0) echo ' checked="checked"'?> value=0> Custom: <input type="text" id="custom" name="custom" value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; }?> >% <br>
+				<input type="radio" name="tipval" <?php if (isset($_POST['custom']) && $_POST['tipval'] == 0) echo ' checked="checked"'?> value=0> Custom: <input type="text" id="custom" name="custom" value=<?php if(isset($_POST['custom'])) { echo $_POST['custom']; } else { echo 10;} ?> >% <br>
 
 				<!-- Optional feature which allows users to split the total tip and cost by any specified number of people -->
-				Split: <input type="text" name="split" id="split" value=<?php if(isset($_POST['split'])) { echo $_POST['split']; }?>> person(s)<br>
+				Split: <input type="text" name="split" id="split" value=<?php if(isset($_POST['split'])) { echo $_POST['split']; } else { echo 2; }?>> person(s)<br>
 
 				<!-- Submission button to submit form information -->
 				<input type="submit" name="submit" value="Submit">
@@ -54,10 +54,11 @@
 						?>
 						<div class="error">!! You must select a tip percentage value !!</div>
 					<?php
-					} else if(empty($_POST['custom']) || $_POST['custom'] < 0) {
+					} else if(empty($_POST['custom']) || $_POST['custom'] < 0 || !is_numeric($_POST['custom'])) {
 						?>
 						<div class="error">!! You must enter a valid custom tip value !!</div>
-					<?php
+						<?php
+						$_POST['custom'] = 10;
 					}
 
 						## Individual tips and totals each member must pay if the split is greater than or equal to 2 persons
@@ -71,15 +72,15 @@
 						} else {
 							?>
 							<div class="error">!! You must input a valid value to split the bill by !!</div>
-						<?php
+							<?php
+							$_POST['split'] = 2;
 						}
 					}
 				} else if((isset($_POST['cost']) && empty($_POST['cost'])) || (isset($_POST['cost']) && !empty($_POST['cost']) && !is_numeric($_POST['cost'])) || (isset($_POST['cost']) && !empty($_POST['cost']) && is_numeric($_POST['cost']) && $_POST['cost'] < 0)){
 					?>
 					<div class="error">!! You must input a valid bill subtotal !!</div>
-				<?php
-				} else {
-					$_POST['cost'] == 10.00;
+					<?php
+					$_POST['cost'] = 10.00;
 				}
 			?>
 			</form>
