@@ -62,14 +62,14 @@
 					}
 
 						## Individual tips and totals each member must pay if the split is greater than or equal to 2 persons
-					if(!empty($_POST['split']) || $_POST['split'] < 0) {
+					if(isset($_POST['split']) && !empty($_POST['split'])) {
 						if($_POST['split'] > 1) {
 						?>
 							<div>Tip Each: $<?php echo number_format((float)$tip / $_POST['split'], 2, '.', '') ?> </div>
 							<div>Total Each: $<?php echo number_format((float)$total / $_POST['split'], 2, '.', '') ?></div>
 						</div>
 						<?php
-						} else {
+						} else if($_POST['split'] <= 0 || !is_numeric($_POST['split'])){
 							?>
 							<div class="error">!! You must input a valid value to split the bill by !!</div>
 							<?php
