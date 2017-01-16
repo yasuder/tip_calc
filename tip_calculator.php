@@ -34,7 +34,7 @@
 			<?php 
 				## Calculating and setting tip value and total value depending on the subtotal and tip percentage selected by the user
 				## Will print the respective values if all required forms are filled in and any submitted forms contain acceptable values
-				if (!empty($_POST['cost']) && $_POST['cost'] > 0) {
+				if (isset($_POST['cost']) && !empty($_POST['cost']) && is_numeric( $_POST['cost']) && $_POST['cost'] > 0) {
 					if($_POST['tipval'] > 0) {
 						$tip = number_format((float)$_POST['cost'] * $_POST['tipval'], 2, '.', '');
 						$total = number_format((float)$_POST['cost'] + ($_POST['cost'] * $_POST['tipval']), 2, '.', '');
@@ -74,10 +74,12 @@
 						<?php
 						}
 					}
-				} else if(isset($_POST['tipval']) && (empty($_POST['cost']) || $_POST['cost'] < 0)){
+				} else if((isset($_POST['cost']) && empty($_POST['cost'])) || (isset($_POST['cost']) && !empty($_POST['cost']) && !is_numeric($_POST['cost'])) || (isset($_POST['cost']) && !empty($_POST['cost']) && is_numeric($_POST['cost']) && $_POST['cost'] < 0)){
 					?>
 					<div class="error">!! You must input a valid bill subtotal !!</div>
 				<?php
+				} else {
+					$_POST['cost'] == 0.00;
 				}
 			?>
 			</form>
