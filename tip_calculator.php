@@ -79,7 +79,7 @@
 					<div class="error">!! You must input a valid bill subtotal !!</div>
 				<?php
 				} else {
-					$_POST['cost'] == 0.00;
+					$_POST['cost'] == 10.00;
 				}
 			?>
 			</form>
